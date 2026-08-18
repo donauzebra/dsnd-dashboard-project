@@ -30,7 +30,7 @@ class Employee(QueryBase):
         query_str = f"""
             SELECT
                 COALESCE(first_name, '') || ' ' || COALESCE(last_name, '') AS full_name,
-                employee_id
+                {self.name}_id
             FROM {self.name}
         """
         return self.query(query_str)
@@ -40,7 +40,7 @@ class Employee(QueryBase):
     # that receives an `id` argument
     # This method should return a list of tuples
     # from an sql execution
-    def username(self, employee_id: int):
+    def username(self, entity_id: int):
         
         # Query 4
         # Write an SQL query
@@ -52,7 +52,7 @@ class Employee(QueryBase):
             SELECT
                 COALESCE(first_name, '') || ' ' || COALESCE(last_name, '') AS full_name
             FROM {self.name}
-            WHERE {self.name}_id = {employee_id}
+            WHERE {self.name}_id = {entity_id}
         """
         return self.query(query_str)
 
