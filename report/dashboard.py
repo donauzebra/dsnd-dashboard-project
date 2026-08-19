@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 #### YOUR CODE HERE
 
 # import the load_model function from the utils.py file
-#### YOUR CODE HERE
+from utils import load_model
 
 """
 Below, we import the parent classes
