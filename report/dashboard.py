@@ -24,7 +24,7 @@ from combined_components import FormGroup, CombinedComponent
 
 # Create a subclass of base_components/dropdown
 # called `ReportDropdown`
-#### YOUR CODE HERE
+class ReportDropdown(Dropdown):
     
     # Overwrite the build_component method
     # ensuring it has the same parameters
@@ -46,11 +46,12 @@ from combined_components import FormGroup, CombinedComponent
         # call the employee_events method
         # that returns the user-type's
         # names and ids
+    pass
 
 
 # Create a subclass of base_components/BaseComponent
 # called `Header`
-#### YOUR CODE HERE
+class Header(BaseComponent):
 
     # Overwrite the `build_component` method
     # Ensure the method has the same parameters
@@ -61,11 +62,12 @@ from combined_components import FormGroup, CombinedComponent
         # return a fasthtml H1 objects
         # containing the model's name attribute
         #### YOUR CODE HERE
+    pass
           
 
 # Create a subclass of base_components/MatplotlibViz
 # called `LineChart`
-#### YOUR CODE HERE
+class LineChart(MatplotlibViz):
     
     # Overwrite the parent class's `visualization`
     # method. Use the same parameters as the parent
@@ -116,11 +118,12 @@ from combined_components import FormGroup, CombinedComponent
         
         # Set title and labels for x and y axis
         #### YOUR CODE HERE
+        pass
 
 
 # Create a subclass of base_components/MatplotlibViz
 # called `BarChart`
-#### YOUR CODE HERE
+class BarChart(MatplotlibViz):
 
     # Create a `predictor` class attribute
     # assign the attribute to the output
@@ -172,7 +175,7 @@ from combined_components import FormGroup, CombinedComponent
  
 # Create a subclass of combined_components/CombinedComponent
 # called Visualizations       
-#### YOUR CODE HERE
+class Visualizations(CombinedComponent):
 
     # Set the `children`
     # class attribute to a list
@@ -185,7 +188,7 @@ from combined_components import FormGroup, CombinedComponent
             
 # Create a subclass of base_components/DataTable
 # called `NotesTable`
-#### YOUR CODE HERE
+class NotesTable(DataTable):
 
     # Overwrite the `component_data` method
     # using the same parameters as the parent class
@@ -195,6 +198,7 @@ from combined_components import FormGroup, CombinedComponent
         # pass the entity_id to the model's .notes 
         # method. Return the output
         #### YOUR CODE HERE
+        pass
     
 
 class DashboardFilters(FormGroup):
@@ -217,7 +221,7 @@ class DashboardFilters(FormGroup):
     
 # Create a subclass of CombinedComponents
 # called `Report`
-#### YOUR CODE HERE
+class Report(CombinedComponent):
 
     # Set the `children`
     # class attribute to a list
@@ -225,6 +229,7 @@ class DashboardFilters(FormGroup):
     # of the header, dashboard filters,
     # data visualizations, and notes table
     #### YOUR CODE HERE
+    pass
 
 # Initialize a fasthtml app 
 #### YOUR CODE HERE
