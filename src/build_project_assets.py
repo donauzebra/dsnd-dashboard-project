@@ -56,8 +56,12 @@ profiles = {
     }
 }
 
+
+def is_recruited(x):
+    return np.random.choice([0, 1], p=[1-x, x])
+
+
 employees = {}
-is_recruited = lambda x: np.random.choice([0, 1], p=[1-x, x])
 
 for employee_id in range(1, 26):
 
