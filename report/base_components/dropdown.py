@@ -37,4 +37,3 @@ class Dropdown(BaseComponent):
             child,
             id=self.id,
         )
-    

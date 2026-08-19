@@ -27,5 +27,3 @@ class DataTable(BaseComponent):
                 table.children = children
             
             return table
-            
-        

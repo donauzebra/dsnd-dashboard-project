@@ -26,3 +26,4 @@ class Radio(BaseComponent):
         return Div(
             *component
         )
+    

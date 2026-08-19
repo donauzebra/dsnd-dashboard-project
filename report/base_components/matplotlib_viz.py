@@ -62,4 +62,3 @@ class MatplotlibViz(BaseComponent):
         for line in ax.get_lines():
             line.set_linewidth(4)
             line.set_linestyle('dashdot')
-

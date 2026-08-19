@@ -35,4 +35,3 @@ class CombinedComponent:
             *children,
             **div_args
         )
-    
