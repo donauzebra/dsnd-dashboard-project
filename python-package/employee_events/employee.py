@@ -1,9 +1,6 @@
 # Import the QueryBase class
 from .query_base import QueryBase
 
-# Import dependencies needed for sql execution
-# from the `sql_execution` module
-#### YOUR CODE HERE
 
 # Define a subclass of QueryBase
 # called Employee
@@ -13,35 +10,34 @@ class Employee(QueryBase):
     # to the string "employee"
     name = "employee"
 
-
     # Define a method called `names`
     # that receives no arguments
     # This method should return a list of tuples
     # from an sql execution
     def names(self):
-        
+
         # Query 3
         # Write an SQL query
-        # that selects two columns 
+        # that selects two columns
         # 1. The employee's full name
         # 2. The employee's id
         # This query should return the data
         # for all employees in the database
         query_str = f"""
             SELECT
-                COALESCE(first_name, '') || ' ' || COALESCE(last_name, '') AS full_name,
+                COALESCE(first_name, '') || ' ' || COALESCE(last_name, '')
+                    AS full_name,
                 {self.name}_id
             FROM {self.name}
         """
         return self.query(query_str)
-    
 
     # Define a method called `username`
     # that receives an `id` argument
     # This method should return a list of tuples
     # from an sql execution
     def username(self, entity_id: int):
-        
+
         # Query 4
         # Write an SQL query
         # that selects an employees full name
@@ -50,12 +46,12 @@ class Employee(QueryBase):
         # with an id equal to the id argument
         query_str = f"""
             SELECT
-                COALESCE(first_name, '') || ' ' || COALESCE(last_name, '') AS full_name
+                COALESCE(first_name, '') || ' ' || COALESCE(last_name, '')
+                    AS full_name
             FROM {self.name}
             WHERE {self.name}_id = {entity_id}
         """
         return self.query(query_str)
-
 
     # Below is method with an SQL query
     # This SQL query generates the data needed for
@@ -66,7 +62,7 @@ class Employee(QueryBase):
     # the sql query
     def model_data(self, entity_id: int):
         query_str = f"""
-            SELECT 
+            SELECT
                 SUM(positive_events) positive_events,
                 SUM(negative_events) negative_events
             FROM {self.name}
@@ -75,4 +71,3 @@ class Employee(QueryBase):
             WHERE {self.name}.{self.name}_id = {entity_id}
         """
         return self.pandas_query(query_str)
-        
