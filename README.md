@@ -17,7 +17,7 @@ This repository contains the completed project for the **Software Engineering fo
 ```bash
 python -m venv venv
 # Windows
-venv\Scripts\activate
+.\venv\Scripts\activate
 # macOS / Linux
 source venv/bin/activate
 ```
