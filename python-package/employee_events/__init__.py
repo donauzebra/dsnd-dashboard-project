@@ -4,9 +4,9 @@ from .query_base import QueryBase
 from .sql_execution import QueryMixin, query
 
 __all__ = [
-	"Employee",
-	"Team",
-	"QueryBase",
-	"QueryMixin",
-	"query",
+    "Employee",
+    "Team",
+    "QueryBase",
+    "QueryMixin",
+    "query",
 ]

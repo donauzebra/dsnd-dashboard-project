@@ -5,9 +5,9 @@ from .matplotlib_viz import MatplotlibViz
 from .data_table import DataTable
 
 __all__ = [
-	"BaseComponent",
-	"Dropdown",
-	"Radio",
-	"MatplotlibViz",
-	"DataTable",
+    "BaseComponent",
+    "Dropdown",
+    "Radio",
+    "MatplotlibViz",
+    "DataTable",
 ]
