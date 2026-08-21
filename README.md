@@ -28,15 +28,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. Build and install the Python package
-
-```bash
-cd python-package
-python setup.py sdist
-pip install dist/employee_events-0.0.tar.gz
-cd ..
-```
-
 ---
 
 ## Run the Dashboard
