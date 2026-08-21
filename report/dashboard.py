@@ -1,8 +1,8 @@
 from fasthtml.common import FastHTML, H1, Div, serve
 import matplotlib.pyplot as plt
 
-# Import QueryBase, Employee, Team from employee_events
-from employee_events import QueryBase, Employee, Team
+# Import Employee, Team from employee_events
+from employee_events import Employee, Team
 
 # import the load_model function from the utils.py file
 from utils import load_model
@@ -77,35 +77,37 @@ class LineChart(MatplotlibViz):
         # Pass the `asset_id` argument to
         # the model's `event_counts` method to
         # receive the x (Day) and y (event count)
-        x, y = model.event_counts(entity_id)
+        df = model.event_counts(entity_id)
 
         # Use the pandas .fillna method to fill nulls with 0
-        x.fillna()
-        y.fillna()
+        df.fillna(0, inplace=True)
 
         # User the pandas .set_index method to set
         # the date column as the index
-        #### YOUR CODE HERE
+        df = df.set_index('event_date')
 
         # Sort the index
-        #### YOUR CODE HERE
+        df = df.sort_index()
 
         # Use the .cumsum method to change the data
         # in the dataframe to cumulative counts
-        #### YOUR CODE HERE
+        df = df.cumsum()
 
         # Set the dataframe columns to the list
         # ['Positive', 'Negative']
-        #### YOUR CODE HERE
+        df = df.rename(columns={
+            'num_pos_events': 'Positive',
+            'num_neg_events': 'Negative'
+        })
 
         # Initialize a pandas subplot
         # and assign the figure and axis
         # to variables
-        #### YOUR CODE HERE
+        _, ax = plt.subplots()
 
         # call the .plot method for the
         # cumulative counts dataframe
-        #### YOUR CODE HERE
+        df.plot(ax=ax)
 
         # pass the axis variable
         # to the `.set_axis_styling`
@@ -114,11 +116,10 @@ class LineChart(MatplotlibViz):
         # the border color and font color to black.
         # Reference the base_components/matplotlib_viz file
         # to inspect the supported keyword arguments
-        #### YOUR CODE HERE
+        self.set_axis_styling(ax, bordercolor='black', fontcolor='black')
 
         # Set title and labels for x and y axis
-        #### YOUR CODE HERE
-        pass
+        ax.set_title('Events', fontsize=20)
 
 
 # Create a subclass of base_components/MatplotlibViz
@@ -183,7 +184,10 @@ class Visualizations(CombinedComponent):
     # class attribute to a list
     # containing an initialized
     # instance of `LineChart` and `BarChart`
-    #### YOUR CODE HERE
+    children = [
+        LineChart(),
+        BarChart()
+        ]
 
     # Leave this line unchanged
     outer_div_type = Div(cls='grid')
@@ -200,7 +204,7 @@ class NotesTable(DataTable):
         # Using the model and entity_id arguments
         # pass the entity_id to the model's .notes
         # method. Return the output
-        return super().component_data(entity_id, model)
+        return model.notes(entity_id)
 
 
 class DashboardFilters(FormGroup):
@@ -231,8 +235,12 @@ class Report(CombinedComponent):
     # containing initialized instances
     # of the header, dashboard filters,
     # data visualizations, and notes table
-    #### YOUR CODE HERE
-    pass
+    children = [
+        Header(),
+        DashboardFilters(),
+        Visualizations(),
+        NotesTable()
+        ]
 
 
 # Initialize a fasthtml app
@@ -244,13 +252,15 @@ Report()
 
 # Create a route for a get request
 # Set the route's path to the root
-#### YOUR CODE HERE
+@app.route("/")
+def get():
 
     # Call the initialized report
     # pass the integer 1 and an instance
     # of the Employee class as arguments
     # Return the result
-    #### YOUR CODE HERE
+    return Report()(1, Employee())
+
 
 # Create a route for a get request
 # Set the route's path to receive a request
@@ -259,13 +269,15 @@ Report()
 # an ID of `2`.
 # parameterize the employee ID
 # to a string datatype
-#### YOUR CODE HERE
+@app.route("/employee/{employee_id}")
+def get_employee(employee_id: str):
 
     # Call the initialized report
     # pass the ID and an instance
     # of the Employee SQL class as arguments
     # Return the result
-    #### YOUR CODE HERE
+    return Report()(employee_id, Employee())
+
 
 # Create a route for a get request
 # Set the route's path to receive a request
@@ -274,13 +286,14 @@ Report()
 # an ID of `2`.
 # parameterize the team ID
 # to a string datatype
-#### YOUR CODE HERE
+@app.route("/team/{team_id}")
+def get_team(team_id: str):
 
     # Call the initialized report
     # pass the id and an instance
     # of the Team SQL class as arguments
     # Return the result
-    #### YOUR CODE HERE
+    return Report()(team_id, Team())
 
 
 # Keep the below code unchanged!
