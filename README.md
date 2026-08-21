@@ -1,7 +1,67 @@
 
 # Software Engineering for Data Scientists 
 
-This repository contains starter code for the **Software Engineering for Data Scientists** final project. Please reference your course materials for documentation on this repository's structure and important files. Happy coding!
+This repository contains the completed project for the **Software Engineering for Data Scientists** final project. The project includes a Python package for database access and a FastHTML-based employee events dashboard.
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Python 3.10
+- `venv` or any virtual environment manager
+
+### 1. Create and activate a virtual environment
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# macOS / Linux
+source venv/bin/activate
+```
+
+### 2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Build and install the Python package
+
+```bash
+cd python-package
+python setup.py sdist
+pip install dist/employee_events-0.0.tar.gz
+cd ..
+```
+
+---
+
+## Run the Dashboard
+
+```bash
+cd report
+python dashboard.py
+```
+
+Open in your browser: [http://localhost:5001](http://localhost:5001)
+
+The dashboard displays employee and team data from `employee_events.db` including:
+- Cumulative positive/negative event line chart
+- Predicted recruitment risk bar chart
+- Notes table
+
+---
+
+## Run Tests
+
+```bash
+pytest
+```
+
+---
 
 ### Repository Structure
 ```
