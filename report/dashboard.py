@@ -1,4 +1,4 @@
-from fasthtml.common import FastHTML, H1, Div, serve
+from fasthtml.common import FastHTML, H1, Div, serve, Link
 import matplotlib.pyplot as plt
 
 # Import Employee, Team from employee_events
@@ -245,7 +245,15 @@ class Report(CombinedComponent):
 
 
 # Initialize a fasthtml app
-app = FastHTML()
+stylesheet = Link(
+    rel="stylesheet",
+    href="/assets/report.css"
+    )
+hdrs = (
+    stylesheet,
+    )
+app = FastHTML(hdrs=hdrs)
+app.static_route_exts(static_path="../assets", prefix="/assets")
 
 # Initialize the `Report` class
 Report()
