@@ -1,4 +1,4 @@
-from fasthtml.common import *
+from fasthtml.common import FastHTML, H1, Div, serve
 import matplotlib.pyplot as plt
 
 # Import QueryBase, Employee, Team from employee_events
@@ -304,7 +304,6 @@ async def update_data(r):
         return RedirectResponse(f"/employee/{id}", status_code=303)
     elif profile_type == 'Team':
         return RedirectResponse(f"/team/{id}", status_code=303)
-
 
 
 serve()
