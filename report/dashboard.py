@@ -62,8 +62,9 @@ class Header(BaseComponent):
 
         # Using the model argument for this method
         # return a fasthtml H1 objects
-        # containing the model's name attribute
-        return H1(model.name)
+        # containing the model's name attribute and selected entity's name
+        username = model.username(entity_id)[0][0]
+        return H1(model.name.title() + ' - ' + username)
 
 
 # Create a subclass of base_components/MatplotlibViz
@@ -119,8 +120,7 @@ class LineChart(MatplotlibViz):
         self.set_axis_styling(ax, bordercolor='black', fontcolor='black')
 
         # Set title and labels for x and y axis
-        name = model.username(entity_id)[0][0]
-        ax.set_title(f'Events Over Time – {name}', fontsize=20)
+        ax.set_title(f'{model.name.title()} Performance', fontsize=20)
 
 
 # Create a subclass of base_components/MatplotlibViz
