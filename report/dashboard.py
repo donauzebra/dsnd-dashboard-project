@@ -1,4 +1,4 @@
-from fasthtml.common import FastHTML, H1, Div, serve, Link
+from fasthtml.common import FastHTML, H1, Div, serve, Link, Response
 import matplotlib.pyplot as plt
 
 # Import Employee, Team from employee_events
@@ -281,11 +281,19 @@ def get():
 @app.route("/employee/{employee_id}")
 def get_employee(employee_id: str):
 
+    # Create an Employee instance to validate the ID
+    model = Employee()
+
+    # If no record is found for the given ID,
+    # return a 404 response instead of rendering a broken page
+    if not model.username(employee_id):
+        return Response(f"Employee {employee_id} not found", status_code=404)
+
     # Call the initialized report
     # pass the ID and an instance
     # of the Employee SQL class as arguments
     # Return the result
-    return Report()(employee_id, Employee())
+    return Report()(employee_id, model)
 
 
 # Create a route for a get request
@@ -298,11 +306,19 @@ def get_employee(employee_id: str):
 @app.route("/team/{team_id}")
 def get_team(team_id: str):
 
+    # Create a Team instance to validate the ID
+    model = Team()
+
+    # If no record is found for the given ID,
+    # return a 404 response instead of rendering a broken page
+    if not model.username(team_id):
+        return Response(f"Team {team_id} not found", status_code=404)
+
     # Call the initialized report
     # pass the id and an instance
     # of the Team SQL class as arguments
     # Return the result
-    return Report()(team_id, Team())
+    return Report()(team_id, model)
 
 
 # Keep the below code unchanged!
